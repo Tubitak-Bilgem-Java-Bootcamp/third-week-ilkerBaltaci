@@ -6,20 +6,32 @@ import Models.Insurance.Insurance;
 import Models.User.User;
 import Util.AddressManager;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
-public abstract class Account {
-    private User user;
-    private AuthenticationStatus authenticationStatus;
+public abstract class Account implements Comparable {
+    public User user;
+    public AuthenticationStatus authenticationStatus;
+    public Insurance insurance;
 
     public Account(User user) {
         this.user = user;
         this.authenticationStatus = AuthenticationStatus.FAIL;
     }
 
-    public void login(String email, String password)
+    public boolean login(String email, String password)
     {
-
+        if(this.user.getEmail().equals(email) && this.user.getPassword().equals(password))
+        {
+            this.authenticationStatus = AuthenticationStatus.SUCCESS;
+            this.user.setLastLoginDate(LocalDateTime.now());
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void addAddress(Address address)

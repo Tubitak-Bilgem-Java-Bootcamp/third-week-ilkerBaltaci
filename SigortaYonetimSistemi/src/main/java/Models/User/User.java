@@ -2,6 +2,8 @@ package Models.User;
 
 import Models.Address.Address;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,8 +15,17 @@ public class User {
     private String profession;
     private int age;
     private List<Address> addressList;
-    private Date lastLoginDate;
+    private LocalDateTime lastLoginDate;
 
+    public User(String name, String lastName, String email, String password, String profession, int age){
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.profession = profession;
+        this.age = age;
+        this.addressList = new ArrayList<>();
+    }
 
     public String getName() {
         return name;
@@ -72,11 +83,11 @@ public class User {
         this.addressList.add(address);
     }
 
-    public Date getLastLoginDate() {
+    public LocalDateTime getLastLoginDate() {
         return lastLoginDate;
     }
 
-    public void setLastLoginDate(Date lastLoginDate) {
+    public void setLastLoginDate(LocalDateTime lastLoginDate) {
         this.lastLoginDate = lastLoginDate;
     }
 }

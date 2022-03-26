@@ -12,4 +12,9 @@ public class Individual extends Account{
     public void addInsurance(Insurance insurance) {
 
     }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.hashCode() - o.hashCode();
+    }
 }
